@@ -3,6 +3,7 @@ export const dark = {
     black: '#141414',
     white: '#F5F5F5',
     background: '#141414',
+    grey: '#EFEFEF',
 }
 
 export const red = {
@@ -10,4 +11,5 @@ export const red = {
     black: dark.black,
     white: dark.white,
     background: dark.red,
+    grey: dark.grey,
 }

@@ -1,5 +1,6 @@
 export const zIndexes = {
     RED_BUTTON: 10,
+    NOTIFICATION: 9,
 }
 
 export const text = {
