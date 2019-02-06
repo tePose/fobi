@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledParagraph = styled.div`
-    max-width: ${props => props.maxWidth}px;
+    max-width: ${props => props.maxWidth}vw;
     position: ${props => props.position || 'absolute'};
     top: ${props => `${props.pos.top}vh` || undefined};
     right: ${props => `${props.pos.right}vw` || undefined};

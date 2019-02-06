@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { text } from '../constants';
 import BrokenText from './BrokenText';
@@ -53,8 +53,9 @@ class Introduction extends Component {
                     onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
                 />
                 <BrokenText
-                    splitText={splitText} text={pageText}
-                    maxWidth={800}
+                    splitText={splitText}
+                    text={pageText}
+                    maxWidth={60}
                     fontSize={splitText ? 100 : 40}
                     position={{ bottom: 10, left: 7 }}
                 />

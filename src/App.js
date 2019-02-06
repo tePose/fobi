@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { dark } from './styles/themes';
+import { dark, red } from './styles/themes';
 import PageContainer from './components/PageContainer';
 
 const GlobalStyle = createGlobalStyle`

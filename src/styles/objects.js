@@ -9,7 +9,7 @@ export const PulsatingCircle = styled.div`
     position: ${props => props.position || 'absolute'};
     top: ${props => props.top || 20}vh;
     left: ${props => props.left || 20}vh;
-    animation: ${props => css`${props.animation} ${props.duration}s ease-in-out ${props.iterationCount}`} ;
+    animation: ${props => css`${props.animation || 'none'} ${props.duration}s ease-in-out ${props.iterationCount}`} ;
     z-index: ${zIndexes.RED_BUTTON};
     transition: transform 1s ease;
 
