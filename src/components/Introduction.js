@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
-import { zIndexes, pages, text } from '../constants';
+import { text } from '../constants';
 import BrokenText from './BrokenText';
+import { PulsatingCircle } from '../styles/objects';
 
 const pulse = scale => keyframes`
     0%      { transform: scale(1); }
@@ -14,23 +15,7 @@ const grow = keyframes`
     100%    { transform: scale(100); }
 `;
 
-const RedCircle = styled.div`
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: ${props => props.theme.red};
-    position: absolute;
-    top: 20vh;
-    left: 20vh;
-    animation: ${props => css`${props.animation} ${props.duration}s ease-in-out ${props.iterationCount}`} ;
-    z-index: ${zIndexes.RED_BUTTON};
-    transition: transform 1s ease;
-
-    &:hover {
-        cursor: pointer;
-        animation-play-state: running;
-    }
-`;
+const StyledIntroduction = styled.div``;
 
 class Introduction extends Component {
     constructor(props) {
@@ -43,10 +28,10 @@ class Introduction extends Component {
     }
 
     componentDidMount() {
-        const { completed, page } = this.props;
+        const { next, page } = this.props;
 
         this.redCircleRef.current.addEventListener("animationend", () => {
-            if (this.state.clicked) completed(page);
+            if (this.state.clicked) next(page);
         });
     }
 
@@ -54,11 +39,11 @@ class Introduction extends Component {
         const { splitText, clicked } = this.state;
         const { page } = this.props;
 
-        const pageText = text[page];
+        const pageText = text[page.name];
 
         return (
-            <div>
-                <RedCircle
+            <StyledIntroduction>
+                <PulsatingCircle
                     ref={this.redCircleRef}
                     onMouseEnter={() => this.setState({ splitText: false })}
                     onMouseLeave={() => this.setState({ splitText: true })}
@@ -67,8 +52,13 @@ class Introduction extends Component {
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
                 />
-                <BrokenText splitText={splitText} text={pageText} />
-            </div>
+                <BrokenText
+                    splitText={splitText} text={pageText}
+                    maxWidth={800}
+                    fontSize={splitText ? 100 : 40}
+                    position={{ bottom: 10, left: 7 }}
+                />
+            </StyledIntroduction>
         );
     }
 }

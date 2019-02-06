@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
+import { dark } from './styles/themes';
 import PageContainer from './components/PageContainer';
-
-const dark = {
-    red: '#B62C00',
-    black: '#141414',
-    white: '#F5F5F5',
-    background: '#141414',
-}
 
 const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: border-box;
+        @import url("https://use.typekit.net/yvs0vfp.css");
     }
 
     body {
@@ -20,9 +15,11 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         height: 100%;
         width: 100%;
-        background-color: ${props => props.theme.black};
+        background-color: ${props => props.theme.background};
         color: ${props => props.theme.white};
         overflow: hidden;
+        font-family: paralucent, sans-serif;
+        font-weight: 300;
     }
 
     *, *:berfore, *after {
@@ -31,13 +28,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends Component {
+    state = { theme: dark };
+
+    setTheme = theme => this.setState({ theme: theme ? theme : dark });
+
     render() {
         return (
-            <ThemeProvider theme={dark}>
-                < >
+            <ThemeProvider theme={this.state.theme}>
+                <React.Fragment>
                     <GlobalStyle />
-                    <PageContainer />
-                </>
+                    <PageContainer setTheme={this.setTheme} />
+                </React.Fragment>
             </ThemeProvider>
         );
     }

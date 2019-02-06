@@ -2,13 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledParagraph = styled.div`
-    max-width: 400px;
-    margin: 40vh auto;
+    max-width: ${props => props.maxWidth}px;
+    position: ${props => props.position || 'absolute'};
+    top: ${props => `${props.pos.top}vh` || undefined};
+    right: ${props => `${props.pos.right}vw` || undefined};
+    bottom: ${props => `${props.pos.bottom}vh` || undefined};
+    left: ${props => `${props.pos.left}vw` || undefined};
 `;
 
 const StyledWord = styled.div`
     position: relative;
-    font-family: sans-serif;
     font-size: ${props => props.fontSize}px;
     display: inline-block;
     margin: 0 0.3em 0 0;
@@ -23,12 +26,11 @@ const randomPosition = () => (
     Math.floor(Math.random() * 60 * (Math.floor(Math.random() * 2) > 0 ? 1 : -1))
 );
 
-const BrokenText = ({ text, splitText }) => (
-    <StyledParagraph>
+const BrokenText = ({ text = '', splitText = false, maxWidth = 400, position = {}, fontSize = 20 }) => (
+    <StyledParagraph maxWidth={maxWidth} pos={position}>
         {text.split(' ').map((word, i) => (
-            <StyledWord
-                key={i}
-                fontSize={splitText ? 80 : 20}
+            <StyledWord key={i}
+                fontSize={fontSize}
                 style={{
                     top: `${splitText ? randomPosition() : 0}vh`,
                     left: `${splitText ? randomPosition() : 0}vw`,

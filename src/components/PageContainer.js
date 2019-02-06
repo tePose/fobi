@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 
-import Introduction from './Introduction';
-import { pages } from '../constants';
+import pages from '../constants/pages';
+import { dark } from '../styles/themes';
 
 class PageContainer extends Component {
-    state = {
-        currentPage: pages.INTRODUCTION,
-    }
+    state = { activePage: pages.INTRODUCTION };
 
     next = page => {
-
-    }
-
-    completed = page => {
-        console.log(page)
+        const { setTheme } = this.props;
+        this.setState({ activePage: page ? pages[page.next] : pages.LAST });
+        setTheme(pages[page.next].theme || dark);
     }
 
     render() {
+        const ActiveComponent = this.state.activePage.component;
         return (
             <React.Fragment>
-                <Introduction page={pages.INTRODUCTION} completed={this.completed} />
+                <ActiveComponent
+                    page={this.state.activePage}
+                    next={this.next}
+                />
             </React.Fragment>
         );
     }
