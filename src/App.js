@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
         width: 100%;
         background-color: ${props => props.theme.black};
         color: ${props => props.theme.white};
+        overflow: hidden;
     }
 
     *, *:berfore, *after {

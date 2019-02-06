@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
+import { zIndexes, pages, text } from '../constants';
 import BrokenText from './BrokenText';
 
-const pulse = keyframes`
+const pulse = scale => keyframes`
     0%      { transform: scale(1); }
-    50%     { transform: scale(1.1); }
+    50%     { transform: scale(${scale}); }
     100%    { transform: scale(1); }
 `;
 
@@ -21,7 +22,9 @@ const RedCircle = styled.div`
     position: absolute;
     top: 20vh;
     left: 20vh;
-    animation: ${props => props.animation} 2s ease-in-out infinite;
+    animation: ${props => css`${props.animation} ${props.duration}s ease-in-out ${props.iterationCount}`} ;
+    z-index: ${zIndexes.RED_BUTTON};
+    transition: transform 1s ease;
 
     &:hover {
         cursor: pointer;
@@ -30,24 +33,41 @@ const RedCircle = styled.div`
 `;
 
 class Introduction extends Component {
-    state = {
-        clickAnimation: false,
-        splitText: true,
+    constructor(props) {
+        super(props);
+        this.redCircleRef = React.createRef();
+        this.state = {
+            clicked: false,
+            splitText: true,
+        }
+    }
+
+    componentDidMount() {
+        const { completed, page } = this.props;
+
+        this.redCircleRef.current.addEventListener("animationend", () => {
+            if (this.state.clicked) completed(page);
+        });
     }
 
     render() {
-        const { splitText, clickAnimation } = this.state;
-        const text = 'Fobi, angst for og unngåelse av situasjoner, naturfenomener, gjenstander eller dyr. Det er en form for frykt som er overdreven i forhold til situasjonen, ikke minsker ved fornuftige forklaringer og overtalelser, er utenfor viljemessig kontroll og som fører til unngåelse av den fryktede situasjonen.';
+        const { splitText, clicked } = this.state;
+        const { page } = this.props;
+
+        const pageText = text[page];
 
         return (
             <div>
                 <RedCircle
+                    ref={this.redCircleRef}
                     onMouseEnter={() => this.setState({ splitText: false })}
                     onMouseLeave={() => this.setState({ splitText: true })}
-                    animation={clickAnimation ? grow : pulse}
-                    onClick={e => this.setState(state => ({ clickAnimation: !state.clickAnimation }))}
+                    animation={clicked ? grow : pulse(splitText ? 1.1 : 1.5)}
+                    duration={splitText ? 1.7 : 1.5}
+                    iterationCount={clicked ? 'forwards' : 'infinite'}
+                    onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
                 />
-                <BrokenText splitText={splitText} text={text} />
+                <BrokenText splitText={splitText} text={pageText} />
             </div>
         );
     }
