@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
+import PageContainer from './components/PageContainer';
+
+const dark = {
+    red: '#B62C00',
+    black: '#141414',
+    white: '#F5F5F5',
+    background: '#141414',
+}
 
 const GlobalStyle = createGlobalStyle`
     html {
@@ -11,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         height: 100%;
         width: 100%;
+        background-color: ${props => props.theme.black};
+        color: ${props => props.theme.white};
     }
 
     *, *:berfore, *after {
@@ -18,19 +29,17 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const StyledApp = styled.div`
-
-`;
-
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <GlobalStyle />
-        La oss snakke om fobier
-      </div>
-    );
-  }
+    render() {
+        return (
+            <ThemeProvider theme={dark}>
+                < >
+                    <GlobalStyle />
+                    <PageContainer />
+                </>
+            </ThemeProvider>
+        );
+    }
 }
 
 export default App;
