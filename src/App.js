@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends Component {
-    state = { theme: whiteTheme };
+    state = { theme: darkTheme };
 
     setTheme = theme => this.setState({ theme: theme ? theme : darkTheme });
 
