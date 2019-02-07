@@ -11,5 +11,12 @@ export const text = {
         'Spesifikke fobier er svært utbredt i befolkningen og er den vanligste formen for angst. Mens man ved agorafobi og sosial fobi frykter et helt spekter av situasjoner, er frykten ved spesifikk fobi avgrenset til én situasjon, eller ett objekt, slik navnet sier.',
         'Fobier inndeles i tre grupper: 1) spesifikk eller enkel fobi, 2) sosial fobi, angst for å snakke i forsamlinger og angst for å spise eller drikke sammen med andre og, 3) agorafobi, angst for torg og samlingssteder.',
     ]
+    CATEGORIES_2: [
+        'Spesifikke fobier deles i fire undergrupper',
+        'Fobi for dyr og insekter, for eksempel edderkopper, veps, slanger, katter og hunder.',
+        'Fobi for naturfenomener, for eksempel tordenvær, vannskrekk og mørkeredsel.',
+        'Fobi for skade og sykdom, for eksempel redsel for sprøytestikk, blod og tannlegeskrekk.',
+        'Fobi for bestemte situasjoner, for eksempel klaustrofobi, høydeskrekk og flyskrekk.',
+    ]
 }
 
