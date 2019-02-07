@@ -27,7 +27,7 @@ export const PulsatingCircle = styled.div`
     transition: transform 1s ease;
 
     &:hover {
-        cursor: ${props => props.hover ? 'auto' : 'pointer' };
+        cursor: ${props => props.hover ? 'not-allowed' : 'pointer' };
         animation-play-state: running;
     }
 `;
