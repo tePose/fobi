@@ -3,17 +3,9 @@ import styled, { keyframes } from 'styled-components';
 
 import { text } from '../constants';
 import BrokenText from './BrokenText';
-import { PulsatingCircle } from '../styles/objects';
+import { PulsatingCircle, grow, pulse } from '../styles/objects';
 
-const pulse = scale => keyframes`
-    0%      { transform: scale(1); }
-    50%     { transform: scale(${scale}); }
-    100%    { transform: scale(1); }
-`;
 
-const grow = keyframes`
-    100%    { transform: scale(100); }
-`;
 
 const StyledIntroduction = styled.div``;
 
@@ -51,13 +43,15 @@ class Introduction extends Component {
                     duration={splitText ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
+                    top={20}
+                    left={15}
                 />
                 <BrokenText
                     splitText={splitText}
                     text={pageText}
                     maxWidth={60}
                     fontSize={splitText ? 100 : 40}
-                    position={{ bottom: 10, left: 7 }}
+                    pos={{ bottom: 10, left: 7 }}
                 />
             </StyledIntroduction>
         );

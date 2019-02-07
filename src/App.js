@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { dark, red } from './styles/themes';
+import { dark, red, white } from './styles/themes';
 import PageContainer from './components/PageContainer';
 
 const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: border-box;
+        min-height: 100%;
+        min-width: 100%;
         @import url("https://use.typekit.net/yvs0vfp.css");
     }
 
     body {
         margin: 0;
         padding: 0;
-        height: 100%;
-        width: 100%;
+        min-height: 100vh;
+        min-width: 100vw;
         background-color: ${props => props.theme.background};
-        color: ${props => props.theme.white};
+        color: ${props => props.theme.color};
         overflow: hidden;
         font-family: paralucent, sans-serif;
         font-weight: 300;

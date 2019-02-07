@@ -5,7 +5,7 @@ import BrokenText from './BrokenText';
 import { text } from '../constants';
 import { PulsatingCircle, grow, pulse } from '../styles/objects';
 
-class Introduction2 extends Component {
+class Introduction3 extends Component {
     constructor(props) {
         super(props);
         this.circleRef = React.createRef();
@@ -25,7 +25,7 @@ class Introduction2 extends Component {
     componentDidMount() {
         const { next, page } = this.props;
 
-        this.setState({ notifications: [{top: 10, left: 20}] });
+        this.setState({ notifications: [{ bottom: 15, right: 25 }] });
 
         this.circleRef.current.addEventListener("animationend", () => {
             if (this.state.clicked) next(page);
@@ -49,9 +49,9 @@ class Introduction2 extends Component {
                 <BrokenText
                     splitText={splitText}
                     text={pageText}
-                    maxWidth={100}
-                    fontSize={100}
-                    color={'black'}
+                    maxWidth={60}
+                    fontSize={40}
+                    color={'red'}
                     pos={{ top: 3, left: 3 }}
                 />
                 {notifications.map((pos, i) => (
@@ -60,7 +60,7 @@ class Introduction2 extends Component {
                         key={i}
                         id={i}
                         close={this.close}
-                        bodyText={'Har jeg en fobi?'}
+                        bodyText={'Er frykten min overdreven?'}
                         buttonText={'kanskje'}
                     />
                 ))}
@@ -72,13 +72,13 @@ class Introduction2 extends Component {
                     duration={splitText ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
-                    top={15}
-                    left={25}
-                    bgcol={'white'}
+                    right={30}
+                    bottom={20}
+                    bgcol={'black'}
                 />
             </div>
         );
     }
 }
 
-export default Introduction2;
+export default Introduction3;

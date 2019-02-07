@@ -4,12 +4,14 @@ import pages from '../constants/pages';
 import { dark } from '../styles/themes';
 
 class PageContainer extends Component {
-    state = { activePage: pages.INTRODUCTION };
+    state = { activePage: pages.INTRODUCTION_1 };
 
     next = page => {
         const { setTheme } = this.props;
-        this.setState({ activePage: page ? pages[page.next] : pages.LAST });
-        setTheme(pages[page.next].theme || dark);
+        const nextPage = pages[page.next] ? pages[page.next] : pages.LAST
+        this.setState({ activePage: nextPage });
+
+        setTheme(nextPage.theme || dark);
     }
 
     render() {

@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { zIndexes } from '../constants';
+
+const popUp = keyframes`
+    from {
+        width: 0px;
+        height: 0px;
+    }
+    to {
+        width: 400px;
+        height: auto;
+    }
+`;
 
 const Container = styled.div`
     width: 400px;
@@ -14,6 +25,7 @@ const Container = styled.div`
     bottom: ${props => `${props.pos.bottom}vh` || undefined};
     left: ${props => `${props.pos.left}vw` || undefined};
     box-shadow: 0px 0px 40px ${props => props.theme.black};
+    animation: ${popUp} 0.2s ease forwards;
 `;
 
 const Header = styled.div`

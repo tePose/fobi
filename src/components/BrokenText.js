@@ -8,6 +8,7 @@ const StyledParagraph = styled.div`
     right: ${props => `${props.pos.right}vw` || undefined};
     bottom: ${props => `${props.pos.bottom}vh` || undefined};
     left: ${props => `${props.pos.left}vw` || undefined};
+    color: ${props => props.theme[props.color] || props.theme.white};
 `;
 
 const StyledWord = styled.div`
@@ -26,8 +27,8 @@ const randomPosition = () => (
     Math.floor(Math.random() * 60 * (Math.floor(Math.random() * 2) > 0 ? 1 : -1))
 );
 
-const BrokenText = ({ text = '', splitText = false, maxWidth = 400, position = {}, fontSize = 20 }) => (
-    <StyledParagraph maxWidth={maxWidth} pos={position}>
+const BrokenText = ({ text = '', splitText = false, maxWidth = 400, pos = {}, fontSize = 20, color }) => (
+    <StyledParagraph maxWidth={maxWidth} pos={pos} color={color}>
         {text.split(' ').map((word, i) => (
             <StyledWord key={i}
                 fontSize={fontSize}
