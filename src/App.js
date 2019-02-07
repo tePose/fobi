@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-import { dark, red, white } from './styles/themes';
+import { darkTheme, redTheme, whiteTheme } from './styles/themes';
 import PageContainer from './components/PageContainer';
 
 const GlobalStyle = createGlobalStyle`
@@ -30,9 +30,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends Component {
-    state = { theme: dark };
+    state = { theme: redTheme };
 
-    setTheme = theme => this.setState({ theme: theme ? theme : dark });
+    setTheme = theme => this.setState({ theme: theme ? theme : darkTheme });
 
     render() {
         return (

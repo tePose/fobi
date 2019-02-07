@@ -112,7 +112,7 @@ class Menu extends Component {
                     bottom={15}
                     left={20}
                     bgcol={'red'}
-                    hover={noNotifications}
+                    hover={!noNotifications}
                 />
                 <PulsatingCircle
                     ref={this.symptomsRef}
@@ -127,7 +127,7 @@ class Menu extends Component {
                     top={20}
                     left={50}
                     bgcol={'red'}
-                    hover={noNotifications}
+                    hover={!noNotifications}
                 />
                 <PulsatingCircle
                     ref={this.causesRef}
@@ -142,7 +142,7 @@ class Menu extends Component {
                     bottom={25}
                     right={20}
                     bgcol={'red'}
-                    hover={noNotifications}
+                    hover={!noNotifications}
                 />
                 {(showCategories && notifications.length < 1) && <HoverText>{categoriesText}</HoverText>}
                 {(showSymptoms && notifications.length < 1) && <HoverText>{symptomsText}</HoverText>}

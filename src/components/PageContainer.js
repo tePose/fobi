@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
 import pages from '../constants/pages';
-import { dark } from '../styles/themes';
+import { darkTheme } from '../styles/themes';
 
 class PageContainer extends Component {
-    state = { activePage: pages.INTRODUCTION_1 };
+    state = { activePage: pages.CATEGORIES_1 };
 
     next = page => {
         const { setTheme } = this.props;
         const nextPage = pages[page.next] ? pages[page.next] : pages.LAST
         this.setState({ activePage: nextPage });
 
-        setTheme(nextPage.theme || dark);
+        setTheme(nextPage.theme || darkTheme);
     }
 
     render() {

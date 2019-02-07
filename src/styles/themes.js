@@ -1,26 +1,31 @@
-export const dark = {
-    red: '#B62C00',
-    black: '#141414',
-    white: '#F5F5F5',
-    background: '#141414',
-    grey: '#EFEFEF',
-    color: '#F5F5F5',
+const red = '#F53B00';
+const black = '#141414';
+const white = '#F5F5F5';
+const grey = '#EFEFEF';
+
+export const darkTheme = {
+    red: red,
+    black: black,
+    white: white,
+    background: black,
+    grey: grey,
+    color: white,
 }
 
-export const red = {
-    red: dark.red,
-    black: dark.black,
-    white: dark.white,
-    background: dark.red,
-    grey: dark.grey,
-    color: dark.black,
+export const redTheme = {
+    red: red,
+    black: black,
+    white: white,
+    background: red,
+    grey: grey,
+    color: black,
 }
 
-export const white = {
-    red: dark.red,
-    black: dark.black,
-    white: dark.white,
-    background: dark.white,
-    grey: dark.grey,
-    color: dark.red,
+export const whiteTheme = {
+    red: red,
+    black: black,
+    white: white,
+    background: white,
+    grey: grey,
+    color: red,
 }

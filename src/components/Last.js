@@ -2,7 +2,7 @@ import React from 'react';
 
 const Last = (props) => (
     <div>
-        This is the end
+        Frykt for å dø er et vanlig symptom
     </div>
 );
 
