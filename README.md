@@ -8,7 +8,7 @@ Requires npm or yarn
 After cloning the repo, run:
 ```
 $ cd fobi
-$ yarn install //if you have yarn, or use npm
+$ yarn install (if you have yarn, optionally use npm)
 $ yarn start (or npm run start)
 ```
 
