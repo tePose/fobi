@@ -104,7 +104,7 @@ class Menu extends Component {
                     onMouseEnter={() => this.setState({ showCategories: true })}
                     onMouseLeave={() => this.setState({ showCategories: false })}
                     animation={clickedCategories ? grow : pulse(showCategories && noNotifications ? 1.5 : 1.1)}
-                    duration={showCategories  && noNotifications ? 1.7 : 1.5}
+                    duration={showCategories && noNotifications ? 1.7 : 1.5}
                     iterationCount={clickedCategories ? 'forwards' : 'infinite'}
                     onClick={e => {
                         if (noNotifications) this.setState(state => ({ clickedCategories: !state.clickedCategories }));
@@ -118,31 +118,31 @@ class Menu extends Component {
                     ref={this.symptomsRef}
                     onMouseEnter={() => this.setState({ showSymptoms: true })}
                     onMouseLeave={() => this.setState({ showSymptoms: false })}
-                    animation={clickedSymptoms ? grow : pulse(showSymptoms && noNotifications ? 1.5 : 1.1)}
-                    duration={showSymptoms && noNotifications ? 1.7 : 1.5}
+                    animation={clickedSymptoms ? grow : pulse(false ? 1.5 : 1.1)}
+                    duration={false ? 1.7 : 1.5}
                     iterationCount={clickedSymptoms ? 'forwards' : 'infinite'}
                     onClick={e => {
-                        if (noNotifications) this.setState(state => ({ clickedSymptoms: !state.clickedSymptoms }));
+                        if (false) this.setState(state => ({ clickedSymptoms: !state.clickedSymptoms }));
                     }}
                     top={20}
                     left={50}
                     bgcol={'red'}
-                    hover={!noNotifications}
+                    hover={true}
                 />
                 <PulsatingCircle
                     ref={this.causesRef}
                     onMouseEnter={() => this.setState({ showCauses: true })}
                     onMouseLeave={() => this.setState({ showCauses: false })}
-                    animation={clickedCauses ? grow : pulse(showCauses && noNotifications ? 1.5 : 1.1)}
-                    duration={showCauses && noNotifications ? 1.7 : 1.5}
+                    animation={clickedCauses ? grow : pulse(false ? 1.5 : 1.1)}
+                    duration={false ? 1.7 : 1.5}
                     iterationCount={clickedCauses ? 'forwards' : 'infinite'}
                     onClick={e => {
-                        if (noNotifications) this.setState(state => ({ clickedCauses: !state.clickedCauses }));
+                        if (false) this.setState(state => ({ clickedCauses: !state.clickedCauses }));
                     }}
                     bottom={25}
                     right={20}
                     bgcol={'red'}
-                    hover={!noNotifications}
+                    hover={true}
                 />
                 {(showCategories && notifications.length < 1) && <HoverText>{categoriesText}</HoverText>}
                 {(showSymptoms && notifications.length < 1) && <HoverText>{symptomsText}</HoverText>}
