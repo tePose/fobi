@@ -5,6 +5,7 @@ import Introduction3 from '../components/Introduction3';
 import Last from '../components/Last';
 import Menu from '../components/Menu';
 import Categories1 from '../components/Categories1';
+import Categories2 from '../components/Categories2';
 
 export default {
     INTRODUCTION_1: {
@@ -39,8 +40,14 @@ export default {
     CATEGORIES_1: {
         name: 'CATEGORIES_1',
         component: Categories1,
-        next: 'undefined',
+        next: 'CATEGORIES_2',
         theme: redTheme,
+    },
+    CATEGORIES_2: {
+        name: 'CATEGORIES_2',
+        component: Categories2,
+        next: 'MENU',
+        theme: whiteTheme,
     },
     LAST: {
         name: 'LAST',

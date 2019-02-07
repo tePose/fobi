@@ -4,7 +4,7 @@ import pages from '../constants/pages';
 import { darkTheme } from '../styles/themes';
 
 class PageContainer extends Component {
-    state = { activePage: pages.CATEGORIES_1 };
+    state = { activePage: pages.CATEGORIES_2 };
 
     next = page => {
         const { setTheme } = this.props;

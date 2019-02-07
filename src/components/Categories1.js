@@ -18,19 +18,30 @@ const Image = styled.img`
     position: absolute;
     bottom: 0;
     opacity: 0.7;
-
 `;
 
 class Categories1 extends Component {
     constructor(props) {
         super(props);
-        this.categoriesRef = React.createRef();
+        this.categories0Ref = React.createRef();
+        this.categories1Ref = React.createRef();
         this.state = {
             clicked: false,
             splitText0: true,
             splitText1: true,
         }
     }
+
+    componentDidMount() {
+        const { next, page } = this.props;
+
+        [this.categories0Ref, this.categories1Ref].forEach(categoryRef =>
+            categoryRef.current.addEventListener("animationend", () => {
+                if (this.state.clicked) next(page);
+            })
+        );
+    }
+
     render() {
         const { splitText0, splitText1, clicked } = this.state;
         const { page } = this.props;
@@ -41,7 +52,7 @@ class Categories1 extends Component {
             <StyledCategories>
                 <Image src={blackSilhouette} alt="" />
                 <PulsatingCircle
-                    ref={this.categoriesRef}
+                    ref={this.categories0Ref}
                     onMouseEnter={() => this.setState({ splitText0: false })}
                     onMouseLeave={() => this.setState({ splitText0: true })}
                     animation={clicked ? grow : pulse(splitText0 ? 1.1 : 1.5)}
@@ -61,7 +72,7 @@ class Categories1 extends Component {
                     pos={{ bottom: 3, right: 2 }}
                 />
                 <PulsatingCircle
-                    ref={this.categoriesRef}
+                    ref={this.categories1Ref}
                     onMouseEnter={() => this.setState({ splitText1: false })}
                     onMouseLeave={() => this.setState({ splitText1: true })}
                     animation={clicked ? grow : pulse(splitText1 ? 1.1 : 1.5)}
