@@ -19,7 +19,6 @@ const Image = styled.img`
     display: inline-block;
     position: absolute;
     bottom: 0;
-    opacity: 0.7;
     min-width: 100%;
     min-height: 100%;
 `;
@@ -127,7 +126,7 @@ class Categories2 extends Component {
                     ref={this.categories0Ref}
                     onMouseEnter={() => this.setState({ splitText0: false })}
                     onMouseLeave={() => this.setState({ splitText0: true })}
-                    animation={clicked ? grow : pulse(splitText0 && noNotifications ? 1.5 : 1.1)}
+                    animation={clicked ? grow : pulse(!splitText0 && noNotifications ? 1.5 : 1.1)}
                     duration={splitText0 && noNotifications ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => {
@@ -142,7 +141,7 @@ class Categories2 extends Component {
                     ref={this.categories1Ref}
                     onMouseEnter={() => this.setState({ splitText1: false })}
                     onMouseLeave={() => this.setState({ splitText1: true })}
-                    animation={clicked ? grow : pulse(splitText1 && noNotifications ? 1.5 : 1.1)}
+                    animation={clicked ? grow : pulse(!splitText1 && noNotifications ? 1.5 : 1.1)}
                     duration={splitText1 && noNotifications ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => {
@@ -157,7 +156,7 @@ class Categories2 extends Component {
                     ref={this.categories2Ref}
                     onMouseEnter={() => this.setState({ splitText2: false })}
                     onMouseLeave={() => this.setState({ splitText2: true })}
-                    animation={clicked ? grow : pulse(splitText2 && noNotifications ? 1.5 : 1.1)}
+                    animation={clicked ? grow : pulse(!splitText2 && noNotifications ? 1.5 : 1.1)}
                     duration={splitText2 && noNotifications ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => {
@@ -172,7 +171,7 @@ class Categories2 extends Component {
                     ref={this.categories3Ref}
                     onMouseEnter={() => this.setState({ splitText3: false })}
                     onMouseLeave={() => this.setState({ splitText3: true })}
-                    animation={clicked ? grow : pulse(splitText3 && noNotifications ? 1.5 : 1.1)}
+                    animation={clicked ? grow : pulse(!splitText3 && noNotifications ? 1.5 : 1.1)}
                     duration={splitText3 && noNotifications ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
                     onClick={e => {
