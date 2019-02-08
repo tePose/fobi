@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
+// eslint-disable-next-line
 import { darkTheme, redTheme, whiteTheme } from './styles/themes';
 import PageContainer from './components/PageContainer';
 

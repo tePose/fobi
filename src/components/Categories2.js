@@ -76,6 +76,8 @@ class Categories2 extends Component {
         const pageText = text[page.name];
         const noNotifications = notifications.length < 1;
 
+        // TODO: Random which text block the buttons unsplit
+
         return (
             <StyledCategories>
                 <Image src={redSilhouette} alt="" />

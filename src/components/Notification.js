@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { zIndexes } from '../constants';
 
@@ -20,10 +20,6 @@ const Container = styled.div`
     position: absolute;
     background-color: ${props => props.theme.grey};
     font-weight: 400;
-    top: ${props => `${props.pos.top}vh` || undefined};
-    right: ${props => `${props.pos.right}vw` || undefined};
-    bottom: ${props => `${props.pos.bottom}vh` || undefined};
-    left: ${props => `${props.pos.left}vw` || undefined};
     box-shadow: 0px 0px 40px ${props => props.theme.black};
     animation: ${popUp} 0.2s ease forwards;
 `;
@@ -34,6 +30,10 @@ const Header = styled.div`
     color: ${props => props.theme.white};
     line-height: 30px;
     padding-left: 10px;
+
+    &:hover {
+        cursor: move;
+    }
 `;
 
 const Footer = styled.div`
@@ -62,19 +62,89 @@ const Body = styled.div`
     width: calc(100% - 60px);
 `;
 
-const Notification = props => (
-        <Container pos={props.pos || {}}>
-            <Header>{props.headerText || 'Ops!'}</Header>
-            <Body>
-                {props.bodyText || 'Du har fobi!'}
-            </Body>
-            <Footer>
-                <AcceptButton onClick={() => props.close(props.id)}>
-                    {props.buttonText || 'Ok'}
-                </AcceptButton>
-            </Footer>
-        </Container>
-);
+class Notification extends Component {
+    constructor(props) {
+        super(props);
+        this.notificationRef = React.createRef();
+        this.state = {
+            top: `${props.pos.top}vh` || undefined,
+            right: `${props.pos.right}vw` || undefined,
+            bottom: `${props.pos.bottom}vh` || undefined,
+            left: `${props.pos.left}vw` || undefined,
+            dragging: false,
+            relative: undefined,
+        }
+    }
+
+    moveContainer = e => {
+        if (!this.state.dragging) return;
+        e.persist();
+        this.setState(state => ({
+            top: `${e.pageY - state.relative.y}px`,
+            left: `${e.pageX - state.relative.x}px`,
+        }));
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    handleMouseDown = e => {
+        const { left, top } = this.notificationRef.current.getBoundingClientRect();
+        this.setState({
+            relative: {
+                x: e.pageX - left,
+                y: e.pageY - top
+            },
+            top: `${top}px`,
+            left: `${left}px`,
+            bottom: undefined,
+            right: undefined,
+            dragging: true,
+        });
+        e.stopPropagation()
+        e.preventDefault();
+    }
+
+    // TODO: This isn't always fired
+    handleMouseUp = e => {
+        this.setState({ dragging: false });
+        e.stopPropagation()
+        e.preventDefault();
+    }
+
+    render() {
+        const { top, right, bottom, left, dragging } = this.state;
+        const { headerText, bodyText, id, buttonText, close } = this.props;
+
+        return (
+            <Container
+                ref={this.notificationRef}
+                style={{
+                    top,
+                    right,
+                    bottom,
+                    left,
+                }}
+                pos={{ top, right, bottom, left }}
+            >
+                <Header
+                    onMouseMove={e => dragging && this.moveContainer(e)}
+                    onMouseDown={this.handleMouseDown}
+                    onMouseUp={this.handleMouseUp}
+                >
+                    {headerText || 'Ops!'}
+                </Header>
+                <Body>
+                    {bodyText || 'Du har fobi!'}
+                </Body>
+                <Footer>
+                    <AcceptButton onClick={() => close(id)}>
+                        {buttonText || 'Ok'}
+                    </AcceptButton>
+                </Footer>
+            </Container>
+        );
+    }
+};
 
 export default Notification;
 

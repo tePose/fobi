@@ -44,6 +44,7 @@ class Introduction2 extends Component {
         const { page } = this.props;
         const pageText = text[page.name];
 
+        const noNotifications = notifications.length < 1;
         return (
             <div>
                 <BrokenText
@@ -68,13 +69,16 @@ class Introduction2 extends Component {
                     ref={this.circleRef}
                     onMouseEnter={() => this.setState({ splitText: false })}
                     onMouseLeave={() => this.setState({ splitText: true })}
-                    animation={clicked ? grow : pulse(splitText ? 1.1 : 1.5)}
-                    duration={splitText ? 1.7 : 1.5}
+                    animation={clicked ? grow : pulse(splitText || !noNotifications ? 1.1 : 1.5)}
+                    duration={splitText && noNotifications ? 1.7 : 1.5}
                     iterationCount={clicked ? 'forwards' : 'infinite'}
-                    onClick={e => this.setState(state => ({ clicked: !state.clicked }))}
+                    onClick={e => {
+                        if (noNotifications) this.setState(state => ({ clicked: !state.clicked }))}
+                    }
                     top={15}
                     left={25}
                     bgcol={'white'}
+                    hover={!noNotifications}
                 />
             </div>
         );
