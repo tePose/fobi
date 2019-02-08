@@ -68,7 +68,7 @@ class Introduction3 extends Component {
                 ))}
                 <PulsatingCircle
                     ref={this.circleRef}
-                    onMouseEnter={() => this.setState({ splitText: false })}
+                    onMouseEnter={() => this.setState({ splitText: noNotifications ? false : true })}
                     onMouseLeave={() => this.setState({ splitText: true })}
                     animation={clicked ? grow : pulse(splitText || !noNotifications ? 1.1 : 1.5)}
                     duration={splitText && noNotifications ? 1.7 : 1.5}
